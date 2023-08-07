@@ -11,3 +11,7 @@ export interface Product {
   thumbnail: string;
   images: string[];
 }
+export interface UserCredentials {
+  username: string;
+  password: string;
+}
