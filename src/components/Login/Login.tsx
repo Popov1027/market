@@ -1,7 +1,12 @@
-import LoginUtils from './loginUtils';
-const Login = () => {
-  const { username, password, setUsername, setPassword, submitHandler } = LoginUtils();
-
+import React from 'react';
+import { LoginProps } from '../ProductsPage/interface-response';
+const Login: React.FC<LoginProps> = ({
+  username,
+  password,
+  setUsername,
+  setPassword,
+  submitHandler
+}) => {
   return (
     <div className="w-full h-[830px] bg-gradient-to-tr from-blue-300 via-purple-500 to-pink-600 flex justify-center items-center">
       <div className="w-[400px] h-[600px] bg-white rounded-[10px]">
@@ -12,18 +17,18 @@ const Login = () => {
             type="text"
             name="username"
             placeholder="Type your username"
-            value={password}
+            value={username}
             className="block w-[300px] mx-auto my-0 p-[10px] border-none outline-none shadow-md"
-            onChange={(event) => setPassword(event.target.value)}></input>
+            onChange={(event) => setUsername(event.target.value)}></input>
 
           <label className="block w-[300px] my-3 mx-auto text-[13px]">Password</label>
           <input
             type="password"
             name="password"
             placeholder="Type your password"
-            value={username}
+            value={password}
             className="block w-[300px] mx-auto my-0 p-[10px] border-none outline-none shadow-md"
-            onChange={(event) => setUsername(event.target.value)}></input>
+            onChange={(event) => setPassword(event.target.value)}></input>
 
           <a
             href="#"
