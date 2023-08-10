@@ -2,9 +2,8 @@ import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../service/AuthService/authService';
 import Login from './Login';
-import { LoginProps } from '../ProductsPage/interface-response';
 
-const LoginUtils: React.FC<LoginProps> = (props) => {
+const LoginUtils: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ const LoginUtils: React.FC<LoginProps> = (props) => {
 
   return (
     <Login
-      {...props}
       username={username}
       password={password}
       setUsername={setUsername}

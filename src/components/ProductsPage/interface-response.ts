@@ -24,3 +24,7 @@ export interface LoginProps {
   setPassword: (password: string) => void;
   submitHandler: (event: React.FormEvent) => void;
 }
+export interface UserCredentials {
+  username: string;
+  password: string;
+}
