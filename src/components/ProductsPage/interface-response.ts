@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Product {
   id: number;
   title: string;
@@ -10,4 +12,19 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+}
+export interface LoginResponseInterface {
+  token: string;
+  id: number;
+}
+export interface LoginProps {
+  username: string;
+  password: string;
+  setUsername: (username: string) => void;
+  setPassword: (password: string) => void;
+  submitHandler: (event: React.FormEvent) => void;
+}
+export interface UserCredentials {
+  username: string;
+  password: string;
 }
