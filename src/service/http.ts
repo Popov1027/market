@@ -10,3 +10,4 @@ export default {
   put: http.put,
   delete: http.delete
 };
+
