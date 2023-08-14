@@ -1,5 +1,6 @@
 import React from 'react';
 import { Product } from './interface-response';
+import { Link } from 'react-router-dom';
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
@@ -19,7 +20,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <p className="text-lg font-bold">Preț: {product.price} lei</p>
         <p>Rating: {product.rating}</p>
         <p>Stoc disponibil: {product.stock}</p>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Read more</button>
+        <Link to={`/${product.id}`}>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Read more</button>
+        </Link>
       </div>
     </div>
   );
