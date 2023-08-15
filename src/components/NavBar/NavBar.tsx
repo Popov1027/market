@@ -35,6 +35,9 @@ export const NavBar = () => {
             </li>
           </ul>
           <button
+            onClick={() => {
+              localStorage.removeItem('token');
+            }}
             className={
               'bg-blue-500 rounded-[50px] border-none py-[8px] px-[20px] transition-all duration-[0.3s] hover:bg-blue-600 hidden md:block'
             }>
@@ -74,6 +77,9 @@ export const NavBar = () => {
           <hr className={'w-full  border-none h-[0.5px] bg-[#34353C] '} />
           <ul className={'no-underline text-white   font-semibold text-lg w-full mx-20'}>
             <li
+              onClick={() => {
+                localStorage.removeItem('token');
+              }}
               className={
                 'w-full py-1 my-2  inline-block transition-all  duration-[0.3s] hover:text-blue-500 px-[7px] hover:bg-[#34353C]  rounded-[7px]'
               }>
