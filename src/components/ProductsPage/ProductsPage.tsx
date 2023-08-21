@@ -3,20 +3,15 @@ import { getProducts } from '../../service/ProductService/productServise';
 import { Product } from './interface-response';
 import ProductCard from './ProductCard';
 import ProductCategories from '../Categories/ProductCategories';
-import { useNavigate } from 'react-router-dom';
+
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const navigate = useNavigate();
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    } else {
-      getProducts().then((data) => {
-        setProducts(data);
-      });
-    }
-  }, [navigate]);
+    getProducts().then((data) => {
+      setProducts(data);
+    });
+  }, []);
 
   return (
     <div className="container mx-auto py-8">
