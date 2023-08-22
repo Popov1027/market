@@ -1,18 +1,15 @@
 import React from 'react';
-import { Button } from 'flowbite-react';
-interface ButtonItemPerPage {
-  onItemsPerPageChange: (newItemsPerPage: number) => void;
-}
-export const ButtonItemPerPage: React.FC<ButtonItemPerPage> = ({ onItemsPerPageChange }) => {
-  const itemsPerPageOptions = [4, 12, 30];
-
+import { Dropdown } from 'flowbite-react';
+import { onItemsPerPage } from '../ProductsPage/interface-response';
+export const DropdownItems: React.FC<onItemsPerPage> = ({ onItemsPerPageChange }) => {
+  const itemsPerPageOptions = [10, 30, 50];
   return (
-    <Button.Group>
+    <Dropdown inline label="Select Item per Page">
       {itemsPerPageOptions.map((option) => (
-        <Button color="gray" key={option} onClick={() => onItemsPerPageChange(option)}>
+        <Dropdown.Item key={option} onClick={() => onItemsPerPageChange(option)}>
           {option} per page
-        </Button>
+        </Dropdown.Item>
       ))}
-    </Button.Group>
+    </Dropdown>
   );
 };

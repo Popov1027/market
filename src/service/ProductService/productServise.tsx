@@ -1,10 +1,13 @@
 import http from '../http';
 import { Product } from '../../components/ProductsPage/interface-response';
-export const getProducts = async (): Promise<Product[]> => {
-  const response = await http.get('products');
-  return response.data.products;
+export const getProducts = async (
+  limit: number,
+  skip: number
+): Promise<{ products: Product[]; limit: number; skip: number; total: number }> => {
+  const response = await http.get(`products?limit=${limit}&skip=${skip}`);
+  return response.data;
 };
 export const getProductById = async (productId: number): Promise<Product> => {
-  const response = await http.get(`https://dummyjson.com/products/${productId}`);
+  const response = await http.get(`/products/${productId}`);
   return response.data;
 };

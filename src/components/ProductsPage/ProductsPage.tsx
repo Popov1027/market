@@ -4,42 +4,46 @@ import { Product } from './interface-response';
 import ProductCard from './ProductCard';
 import { PaginationWithIcons } from '../Pagination/Pagination';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ButtonItemPerPage } from '../Pagination/ButtonItemPerPage';
+import { DropdownItems } from '../Pagination/ButtonItemPerPage';
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(4);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const pageCount = Math.ceil(products.length / itemsPerPage);
+  const [total, setTotal] = useState<number>(100);
+  const [pageCount, setPageCount] = useState<number>(1);
   const navigate = useNavigate();
   const location = useLocation();
+  const queryparams = new URLSearchParams(location.search);
+
   const onPageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set('Page', selectedPage.toString());
+    queryparams.set('Page', selectedPage.toString());
     navigate({
       pathname: location.pathname,
-      search: queryParams.toString()
+      search: queryparams.toString()
     });
   };
   const handleItemsPerPageChange = (newItemsPerPage: number) => {
     setItemsPerPage(newItemsPerPage);
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set('ItemsPerPage', newItemsPerPage.toString());
+    queryparams.set('ItemsPerPage', newItemsPerPage.toString());
     navigate({
       pathname: location.pathname,
-      search: queryParams.toString()
+      search: queryparams.toString()
     });
   };
-
-  const displayedProducts = products.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const pageFromQuery = queryParams.get('Page');
-    const itemsPerPageFromQuery = queryParams.get('ItemsPerPage');
+    const pageFromQuery = queryparams.get('Page');
+    const itemsPerPageFromQuery = queryparams.get('ItemsPerPage');
+    const limit = itemsPerPageFromQuery ? parseInt(itemsPerPageFromQuery) : itemsPerPage;
+    const skip = pageFromQuery ? (parseInt(pageFromQuery) - 1) * limit : 0;
+    const pageCount = Math.ceil(total / limit);
+    setPageCount(pageCount);
+    getProducts(limit, skip).then((data) => {
+      setProducts(data.products);
+      setTotal(data.total);
+    });
+
     if (pageFromQuery) {
       setCurrentPage(parseInt(pageFromQuery, 10));
     }
@@ -47,20 +51,13 @@ const ProductsPage: React.FC = () => {
       setItemsPerPage(parseInt(itemsPerPageFromQuery, 10));
     }
   }, [location.search]);
-
-  useEffect(() => {
-    getProducts().then((data) => {
-      setProducts(data);
-    });
-  }, []);
-
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-end mb-10">
-        <ButtonItemPerPage onItemsPerPageChange={handleItemsPerPageChange} />
+        <DropdownItems onItemsPerPageChange={handleItemsPerPageChange} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {displayedProducts.map((product) => (
+        {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

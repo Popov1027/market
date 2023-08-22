@@ -28,3 +28,10 @@ export interface UserCredentials {
   username: string;
   password: string;
 }
+
+export interface onItemsPerPage {
+  onItemsPerPageChange: (newItemsPerPage: number) => void;
+}
+export interface CarouselProductSingleProps {
+  imagesProduct: string[];
+}
