@@ -3,6 +3,7 @@ import { getProducts } from '../../service/ProductService/productServise';
 import { Product } from './interface-response';
 import ProductCard from './ProductCard';
 import ProductCategories from '../Categories/ProductCategories';
+
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
