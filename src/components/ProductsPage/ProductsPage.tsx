@@ -5,6 +5,7 @@ import ProductCard from './ProductCard';
 import { PaginationWithIcons } from '../Pagination/Pagination';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DropdownItems } from '../Pagination/ButtonItemPerPage';
+import ProductCategories from '../Categories/ProductCategories';
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -56,6 +57,7 @@ const ProductsPage: React.FC = () => {
       <div className="flex justify-end mb-10">
         <DropdownItems onItemsPerPageChange={handleItemsPerPageChange} />
       </div>
+      <ProductCategories />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
