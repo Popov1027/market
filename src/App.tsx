@@ -3,6 +3,7 @@ import ProductsPage from './components/ProductsPage/ProductsPage';
 import LoginUtils from './components/Login/LoginUtils';
 import { ProductSinglePage } from './components/ProductSinglePage/ProductSinglePage';
 import { useEffect } from 'react';
+import AllUser from './components/User/User';
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
     <Routes>
       <Route path={'/login'} element={<LoginUtils />} />
       <Route path={'/'} element={<ProductsPage />} />
+      <Route path={'/user'} element={<AllUser />} />
       <Route path={'/:productId'} element={<ProductSinglePage />} />
     </Routes>
   );
