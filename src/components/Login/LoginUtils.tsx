@@ -14,7 +14,7 @@ const LoginUtils: React.FC = () => {
     login({ username, password }).then(({ token, id }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('userId', id.toString());
-      navigate('/');
+      navigate('/product-page');
     });
   };
 
