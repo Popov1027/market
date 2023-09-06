@@ -29,6 +29,11 @@ export interface UserCredentials {
   password: string;
 }
 
+export interface onItemsPerPage {
+  onItemsPerPageChange: (newItemsPerPage: number) => void;
+}
+export interface CarouselProductSingleProps {
+  imagesProduct: string[];
 export interface User {
   id: number;
   firstName: string;
@@ -38,4 +43,5 @@ export interface User {
   gender: string;
   email: string;
   phone: number;
+}
 }
