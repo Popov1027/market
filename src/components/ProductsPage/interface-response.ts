@@ -34,6 +34,7 @@ export interface onItemsPerPage {
 }
 export interface CarouselProductSingleProps {
   imagesProduct: string[];
+}
 export interface User {
   id: number;
   firstName: string;
@@ -43,5 +44,4 @@ export interface User {
   gender: string;
   email: string;
   phone: number;
-}
 }
