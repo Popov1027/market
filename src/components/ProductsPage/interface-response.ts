@@ -52,47 +52,43 @@ export interface User {
   height: number;
   weight: number;
   eyeColor: string;
-  hair: {
-    color: string;
-    type: string;
-  };
+  hair: HairDetails;
   domain: string;
   ip: string;
-  address: {
-    address: string;
-    city: string;
-    coordinates: {
-      lat: number;
-      lng: number;
-    };
-    postalCode: string;
-    state: string;
-  };
+  address: Address;
   macAddress: string;
   university: string;
-  bank: {
-    cardExpire: string;
-    cardNumber: string;
-    cardType: string;
-    currency: string;
-    iban: string;
-  };
-  company: {
-    address: {
-      address: string;
-      city: string;
-      coordinates: {
-        lat: number;
-        lng: number;
-      };
-      postalCode: string;
-      state: string;
-    };
-    department: string;
-    name: string;
-    title: string;
-  };
+  bank: BankInfo;
+  company: CompanyInfo;
   ein: string;
   ssn: string;
   userAgent: string;
+}
+export interface HairDetails {
+  color: string;
+  type: string;
+}
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+export interface Address {
+  address: string;
+  city: string;
+  coordinates: Coordinates;
+  postalCode: string;
+  state: string;
+}
+export interface BankInfo {
+  cardExpire: string;
+  cardNumber: string;
+  cardType: string;
+  currency: string;
+  iban: string;
+}
+export interface CompanyInfo {
+  address: Address;
+  department: string;
+  name: string;
+  title: string;
 }

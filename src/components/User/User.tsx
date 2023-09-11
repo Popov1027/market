@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { allUser } from '../../service/UserService/userService';
 import { User } from '../ProductsPage/interface-response';
+import { useNavigate } from 'react-router-dom';
+
 const AllUser = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     allUser().then((data) => {
       setUsers(data);
     });
   }, []);
+  const userClick = (userId: number) => {
+    navigate(`/userprofile/${userId}`);
+  };
+
   return (
     <div className='flex-col"'>
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -45,7 +52,8 @@ const AllUser = () => {
                 {users.map((user) => (
                   <tr
                     key={user.id}
-                    className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                    className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 cursor-pointer"
+                    onClick={() => userClick(user.id)}>
                     <td className="whitespace-nowrap px-6 py-4 font-medium">{user.firstName}</td>
                     <td className="whitespace-nowrap px-6 py-4 font-medium">{user.lastName}</td>
                     <td className="whitespace-nowrap px-6 py-4 font-medium">{user.maidenName}</td>
