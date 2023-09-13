@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchProducts } from '../../service/SearchService/searchService';
+import { searchProducts } from '../../service/SearchProductsService/searchProductsService';
 import { Product } from '../ProductsPage/interface-response';
 
 interface SearchProductProps {
@@ -41,7 +41,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({ onSearchResults }) => {
                 />
                 <button
                     onClick={handleSearch}
-                    className="absolute top-0 right-0 px-4 py-2 bg-blue-500 text-white rounded-md"
+                    className=" absolute top-0 right-0 px-4 py-2 bg-blue-500 text-white rounded-md"
                 >
                     Search
                 </button>
