@@ -6,6 +6,7 @@ import { ProductSinglePage } from '../components/ProductSinglePage/ProductSingle
 import { PrivateRoute } from './PrivateRoute';
 import LoginUtils from '../components/Login/LoginUtils';
 import { UserSinglePage } from '../components/UserSinglePage/UserSinglePage';
+import { ModalProvider } from '../context/ModalContext';
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,17 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    element: <PrivateRoute />,
-    children: [{ path: 'product-page', element: <ProductsPage /> }]
+    element: (
+      <ModalProvider>
+        {' '}
+        <PrivateRoute />
+      </ModalProvider>
+    ),
+    children: [
+      {
+        path: 'product-page',
+        element: <ProductsPage />
+      }
+    ]
   }
 ]);
