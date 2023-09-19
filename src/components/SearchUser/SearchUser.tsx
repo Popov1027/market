@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { searchUsers } from '../../service/SearchUserService/searchUserService';
+import { allUser } from '../../service/UserService/userService';
 import { User } from '../ProductsPage/interface-response';
 
 interface SearchUserProps {
@@ -17,7 +17,7 @@ const SearchUser: React.FC<SearchUserProps> = ({ setSearchResults }) => {
       return;
     }
 
-    searchUsers(query)
+    allUser(query)
       .then((response) => {
         if (response && response.length > 0) {
           console.log('Searched user', response[0]);
