@@ -22,7 +22,6 @@ export const router = createBrowserRouter([
   {
     element: (
       <ModalProvider>
-        {' '}
         <PrivateRoute />
       </ModalProvider>
     ),

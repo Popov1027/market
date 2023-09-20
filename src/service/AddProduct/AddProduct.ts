@@ -1,12 +1,12 @@
 import http from '../http';
 
-export interface addProduct {
+export interface AddProduct {
   title: string;
 }
 
-export const addProduct = async (RestaurantCredentials: addProduct) => {
+export const addProduct = async (product: AddProduct): Promise<any> => {
   try {
-    const response = await http.post('https://dummyjson.com/products/add', RestaurantCredentials);
+    const response = await http.post('products/add', product);
     console.log(response);
     return response.data;
   } catch (error) {

@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react';
 import { addProduct } from '../../service/AddProduct/AddProduct';
 
 export const AddProduct = () => {
-  const { closeModal } = useModal();
+  const { closeModal, isOpen } = useModal();
   const [title, setTitle] = useState<string>('');
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -13,7 +13,9 @@ export const AddProduct = () => {
     const productInfo = {
       title
     };
-    addProduct(productInfo);
+    addProduct(productInfo)
+      .then(closeModal)
+      .catch(() => isOpen);
 
     console.log('Product Info:', productInfo);
   };
