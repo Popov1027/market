@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { ModalBody, ModalComponents, ModalFooter, ModalHeader } from './ModalComponents';
 import { deleteProduct, updateProduct } from '../../../service/ProductService/productServise';
 
-// pentru a utiliza codul in alte componente <Modal open={false} onClose={() => {}} />
-
 type propsTypes = {
   open: boolean;
   title: string;
@@ -23,6 +21,10 @@ export const Modal: React.FC<propsTypes> = ({
   productId
 }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [titleInput, setTitleInput] = useState<string>('');
+  const [brandInput, setBrandInput] = useState<string>('');
+  const [descriptionInput, setDescriptionInput] = useState<string>('');
+
   const handleDelete = async () => {
     const deletedProduct = await deleteProduct(productId);
     if (deletedProduct) {
@@ -33,7 +35,13 @@ export const Modal: React.FC<propsTypes> = ({
     setOpen(false);
   };
 
-  const handleUpdate = async (updatedData: any) => {
+  const handleUpdate = async () => {
+    const updatedData = {
+      title: titleInput,
+      brand: brandInput,
+      description: descriptionInput
+    };
+
     const updatedProduct = await updateProduct(productId, updatedData);
     if (updatedProduct) {
       console.log('Product updated successfully');
@@ -42,6 +50,7 @@ export const Modal: React.FC<propsTypes> = ({
     }
     setOpen(false);
   };
+
   return (
     <>
       <button

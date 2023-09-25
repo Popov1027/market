@@ -33,28 +33,28 @@ export const ProductSinglePage: React.FC = () => {
             <CarouselProductSingle imagesProduct={imagesProduct} />
           </div>
         </div>
-        <div className="flex items-center col-span-3 col-start-3 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           <span className="text-2xl font-bold tracking-tight text-gray-900">
             Brand: {product.brand}
           </span>
         </div>
-        <div className="flex items-center col-span-3 col-start-3 row-start-2 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 row-start-2 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           Title: {product.title}
         </div>
-        <div className="flex items-center col-span-3 col-start-3 row-start-3 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 row-start-3 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           <span className="font-normal text-gray-700 line-clamp-3">
             Description: {product.description}
           </span>
         </div>
-        <div className="flex items-center col-span-3 col-start-3 row-start-4 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 row-start-4 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           Rating: {product.rating}
         </div>
-        <div className="flex items-center col-span-3 col-start-3 row-start-5 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 row-start-5 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           Stock: {product.stock}
         </div>
-        <div className="flex items-center col-span-3 col-start-3 row-start-6 px-[10px] border-[1px] border-solid border-black rounded-lg">
+        <div className="flex items-center col-span-3 col-start-3 row-start-6 px-[10px] border-[1px] border-solid border-black rounded-lg shadow">
           Price: <span className="ml-[10px] line-through text-slate-700">{product.price}</span>
-          <span className="ml-[10px] font-bold text-red-600	text-lg">{newPrice.toFixed(2)}</span>
+          <span className="ml-[10px] font-bold text-red-600 text-lg">{newPrice.toFixed(2)}</span>
         </div>
         <div className="flex justify-end items-center col-span-3 col-start-3 row-start-7 px-[10px]">
           <Modal
@@ -66,10 +66,8 @@ export const ProductSinglePage: React.FC = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <label htmlFor="title">Title:</label>
                     <input type="text" id="title" name="title" placeholder={product.title} />
-                    <label htmlFor="stock">Stock:</label>
-                    <input type="number" id="stock" name="stock" value={product.stock} />
-                    <label htmlFor="Price">Price:</label>
-                    <input type="number" id="Price" name="Price" value={product.price} />
+                    <label htmlFor="brand">Brand:</label>
+                    <input type="text" id="brand" name="brand" placeholder={product.brand} />
                     <label htmlFor="description">Description:</label>
                     <textarea
                       id="description"
