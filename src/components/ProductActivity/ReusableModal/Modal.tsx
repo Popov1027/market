@@ -21,18 +21,20 @@ export const Modal: React.FC<propsTypes> = ({
   productId
 }) => {
   const [open, setOpen] = useState<boolean>(false);
-  const [titleInput, setTitleInput] = useState<string>('');
-  const [brandInput, setBrandInput] = useState<string>('');
-  const [descriptionInput, setDescriptionInput] = useState<string>('');
+  const [titleInput] = useState<string>('');
+  const [brandInput] = useState<string>('');
+  const [descriptionInput] = useState<string>('');
 
   const handleDelete = async () => {
-    const deletedProduct = await deleteProduct(productId);
-    if (deletedProduct) {
-      console.log('Product deleted successfully');
-    } else {
-      console.error('Error deleting product');
-    }
-    setOpen(false);
+    deleteProduct(productId)
+      .then((deletedProduct) => {
+        console.log(deletedProduct ? 'Product deleted successfully' : 'Error deleting product');
+        setOpen(false);
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+        setOpen(false);
+      });
   };
 
   const handleUpdate = async () => {
@@ -42,13 +44,15 @@ export const Modal: React.FC<propsTypes> = ({
       description: descriptionInput
     };
 
-    const updatedProduct = await updateProduct(productId, updatedData);
-    if (updatedProduct) {
-      console.log('Product updated successfully');
-    } else {
-      console.error('Error updating product');
-    }
-    setOpen(false);
+    updateProduct(productId, updatedData)
+      .then((updatedProduct) => {
+        console.log(updatedProduct ? 'Product updated successfully' : 'Error updating product');
+        setOpen(false);
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+        setOpen(false);
+      });
   };
 
   return (

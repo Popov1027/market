@@ -12,22 +12,12 @@ export const getProductById = async (productId: number): Promise<Product> => {
   return response.data;
 };
 
-export const updateProduct = async (productId: string, updatedData: Product) => {
-  try {
-    const response = await http.put(`/products/${productId}`, updatedData);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const updateProduct = async (productId: string, updatedData: any) => {
+  const response = await http.put(`/products/${productId}`, updatedData);
+  return response.data;
 };
 
 export const deleteProduct = async (productId: string) => {
-  try {
-    const response = await http.delete(`/products/${productId}`);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await http.delete(`/products/${productId}`);
+  return response.data;
 };
