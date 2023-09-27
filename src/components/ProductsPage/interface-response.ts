@@ -12,6 +12,8 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  quantity: number;
+  discountedPrice: number;
 }
 export interface LoginResponseInterface {
   token: string;
@@ -44,4 +46,17 @@ export interface User {
   gender: string;
   email: string;
   phone: number;
+}
+export interface ShoppingCartImp {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  total: number;
+  discountPercentage: number;
+  discountedPrice: number;
+  discountedTotal: number;
+  userId: number;
+  totalProducts: number;
+  totalQuantity: number;
 }
