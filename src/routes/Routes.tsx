@@ -6,6 +6,7 @@ import { ProductSinglePage } from '../components/ProductSinglePage/ProductSingle
 import { PrivateRoute } from './PrivateRoute';
 import LoginUtils from '../components/Login/LoginUtils';
 import ShoppingCart from '../components/ShoppingCart/ShoppingCart';
+import { UserSinglePage } from '../components/UserSinglePage/UserSinglePage';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,8 @@ export const router = createBrowserRouter([
       { path: 'user', element: <AllUser /> },
       { path: ':productId', element: <ProductSinglePage /> },
       { path: 'shopping-cart', element: <ShoppingCart /> }
+      { path: 'userprofile/:userId', element: <UserSinglePage /> },
+      { path: ':productId', element: <ProductSinglePage /> }
     ]
   },
   {

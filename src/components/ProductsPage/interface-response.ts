@@ -45,7 +45,54 @@ export interface User {
   age: number;
   gender: string;
   email: string;
-  phone: number;
+  phone: string;
+  username: string;
+  password: string;
+  birthDate: string;
+  image: string;
+  bloodGroup: string;
+  height: number;
+  weight: number;
+  eyeColor: string;
+  hair: HairDetails;
+  domain: string;
+  ip: string;
+  address: Address;
+  macAddress: string;
+  university: string;
+  bank: BankInfo;
+  company: CompanyInfo;
+  ein: string;
+  ssn: string;
+  userAgent: string;
+}
+export interface HairDetails {
+  color: string;
+  type: string;
+}
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+export interface Address {
+  address: string;
+  city: string;
+  coordinates: Coordinates;
+  postalCode: string;
+  state: string;
+}
+export interface BankInfo {
+  cardExpire: string;
+  cardNumber: string;
+  cardType: string;
+  currency: string;
+  iban: string;
+}
+export interface CompanyInfo {
+  address: Address;
+  department: string;
+  name: string;
+  title: string;
 }
 export interface ShoppingCartImp {
   id: string;
