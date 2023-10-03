@@ -18,7 +18,9 @@ const ProductCategories = () => {
 
   useEffect(() => {
     getCategories().then(setCategories);
-    getAllProducts().then(products => setAllProducts(products)).catch(console.error);
+    getAllProducts()
+      .then((products) => setAllProducts(products))
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -26,10 +28,12 @@ const ProductCategories = () => {
       ? getProductsByCategory(selectedCategory)
       : Promise.resolve(allProducts);
 
-    fetchProducts.then(products => setFilteredProducts(products)).catch(error => {
-      console.error('Error', error);
-      setFilteredProducts([]);
-    });
+    fetchProducts
+      .then((products) => setFilteredProducts(products))
+      .catch((error) => {
+        console.error('Error', error);
+        setFilteredProducts([]);
+      });
   }, [selectedCategory, allProducts]);
 
   const handleCategoryChange = (category: string) => {
@@ -49,15 +53,19 @@ const ProductCategories = () => {
       <SearchProduct onSearchResults={handleSearchResults} />
       <div>
         <h2 className="text-left mb-5 text-2xl font-semibold">Product Categories:</h2>
-        <div ref={categoryContainerRef} className="flex overflow-x-auto gap-3 justify-start p-1 items-center">
-          {categories.map(category => (
+        <div
+          ref={categoryContainerRef}
+          className="flex overflow-x-auto gap-3 justify-start p-1 items-center">
+          {categories.map((category) => (
             <button
               key={category}
               onClick={() => handleCategoryChange(category)}
-              className={`w-38 p-2 rounded-full flex justify-between
-              ${selectedCategory === category ? 'bg-orange-500 text-white' : 'bg-gray-200 text-black'}
-              text-xs font-bold cursor-pointer uppercase transition-all duration-200 shadow-sm whitespace-nowrap`}
-            >
+              className={`w-38 p-2 rounded-full flex justify-between ${
+                selectedCategory === category
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-200 text-black'
+              }
+              text-xs font-bold cursor-pointer uppercase transition-all duration-200 shadow-sm whitespace-nowrap`}>
               #{category}
             </button>
           ))}
@@ -67,7 +75,7 @@ const ProductCategories = () => {
             {selectedCategory ? `Products in ${selectedCategory} category:` : 'All Products:'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {productsToDisplay.map(product => (
+            {productsToDisplay.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

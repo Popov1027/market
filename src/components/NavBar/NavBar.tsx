@@ -30,7 +30,9 @@ export const NavBar = () => {
               className={
                 'inline-block transition-all  duration-[0.3s] hover:text-blue-500 px-[20px]'
               }>
-              <a href="#">Cart</a>
+              <a href="#" onClick={() => navigate('/shopping-cart')}>
+                Cart
+              </a>
             </li>
             <li
               className={
