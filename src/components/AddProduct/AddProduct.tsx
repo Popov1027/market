@@ -14,8 +14,6 @@ export const AddProduct = () => {
     addProduct({ title })
       .then(closeModal)
       .catch(() => isOpen);
-
-    console.log('Product Info:');
   };
 
   return (

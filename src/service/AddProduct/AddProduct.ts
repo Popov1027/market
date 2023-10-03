@@ -7,11 +7,10 @@ export interface AddProduct {
 }
 
 export const addProduct = async (product: { title: string }): Promise<AddProduct | undefined> => {
-  try {
-    const response = await http.post('products/add', product);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return http
+    .post('products/add', product)
+    .then((response) => response.data)
+    .catch((err) => {
+      throw err;
+    });
 };
