@@ -10,14 +10,12 @@ export const AddProduct = () => {
   };
   const handleAddProduct = (event: FormEvent) => {
     event.preventDefault();
-    const productInfo = {
-      title
-    };
-    addProduct(productInfo)
+
+    addProduct({ title })
       .then(closeModal)
       .catch(() => isOpen);
 
-    console.log('Product Info:', productInfo);
+    console.log('Product Info:');
   };
 
   return (

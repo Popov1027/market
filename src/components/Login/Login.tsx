@@ -8,7 +8,7 @@ const Login: React.FC<LoginProps> = ({
   submitHandler
 }) => {
   return (
-    <div className="w-full h-[830px] bg-gradient-to-tr from-blue-300 via-purple-500 to-pink-600 flex justify-center items-center">
+    <div className="w-full h-screen min-h-[700px] bg-gradient-to-tr from-blue-300 via-purple-500 to-pink-600 flex justify-center items-center">
       <div className="w-[400px] h-[600px] bg-white rounded-[10px]">
         <h3 className="my-10 mx-auto text-[30px] w-[80px]">Login</h3>
         <form onSubmit={(event) => submitHandler(event)}>

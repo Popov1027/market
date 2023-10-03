@@ -4,6 +4,7 @@ import LoginUtils from './components/Login/LoginUtils';
 import { ProductSinglePage } from './components/ProductSinglePage/ProductSinglePage';
 import { useEffect } from 'react';
 import AllUser from './components/User/User';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 function App() {
   const navigate = useNavigate();
