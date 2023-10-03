@@ -11,3 +11,13 @@ export const getProductById = async (productId: number): Promise<Product> => {
   const response = await http.get(`/products/${productId}`);
   return response.data;
 };
+
+export const updateProduct = async (productId: string, updatedData: any) => {
+  const response = await http.put(`/products/${productId}`, updatedData);
+  return response.data;
+};
+
+export const deleteProduct = async (productId: string) => {
+  const response = await http.delete(`/products/${productId}`);
+  return response.data;
+};
