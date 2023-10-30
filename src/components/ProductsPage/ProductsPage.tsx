@@ -6,6 +6,9 @@ import { PaginationWithIcons } from '../Pagination/Pagination';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DropdownItems } from '../Pagination/ButtonItemPerPage';
 import ProductCategories from '../Categories/ProductCategories';
+import { AddProduct } from '../AddProduct/AddProduct';
+import { ModalAddProduct } from '../AddProduct/ModalAddProduct';
+import { useModal } from '../../context/ModalContext';
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -16,7 +19,7 @@ const ProductsPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryparams = new URLSearchParams(location.search);
-
+  const { isOpen } = useModal();
   const onPageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);
     queryparams.set('Page', selectedPage.toString());
@@ -53,24 +56,27 @@ const ProductsPage: React.FC = () => {
     }
   }, [location.search]);
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex justify-end mb-10">
-        <DropdownItems onItemsPerPageChange={handleItemsPerPageChange} />
+    <>
+      {isOpen ? <ModalAddProduct /> : null}
+      <div className="container mx-auto py-8">
+        <div className="flex justify-end mb-10">
+          <DropdownItems onItemsPerPageChange={handleItemsPerPageChange} />
+        </div>
+        <ProductCategories />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <PaginationWithIcons
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+            totalPages={pageCount}
+          />
+        </div>
       </div>
-      <ProductCategories />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-      <div className="flex justify-center">
-        <PaginationWithIcons
-          currentPage={currentPage}
-          onPageChange={onPageChange}
-          totalPages={pageCount}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 
